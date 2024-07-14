@@ -22,3 +22,6 @@ We should care about read and write
 - Only a uniqueness (Each user have liked item seperately, so saving this records in redis can lead to waste of resources).
 - Record only store  one or two attribute.
 - records use for time series data(update from time to time)
+
+##### Notation when getting hashes from redis.
+- Redis always save our hashes to string. In some case, returning value for app can make a huge problems.For example, revenue is expected to be integer, but received String. As a result, we have to serialize and deserialize to returns the correct fields and correct values. Serialize is setup object ready to hash and turn them to queryable format. Deserialize is formats data from redis, parse String to plain number
