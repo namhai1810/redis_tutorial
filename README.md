@@ -9,3 +9,16 @@
  which can lead to overwhemling data. We should convern about a static data such as contact info, sign in and sign out.
 - key naming is essential, because it is unique and can be updated and people who looking for is easy. Tip: use ':' to seperate part of key, '#' for unique ID
 For example: pagecached#privacy, pagecached#auth/sigin (saved base router)
+### 2. Redis design patters
+What we care all about is speed in redis
+![alt text](images/image.png)
+We should care about read and write
+![alt text](images/image-1.png)
+##### Reason using hash
+- They store multiple of attribute. For example: items have URL, price,... They should be stored in hash
+- A collections of these records can be sorted in different way
+- Often Need to access single record at a time(session, users)
+##### Dont use hash
+- Only a uniqueness (Each user have liked item seperately, so saving this records in redis can lead to waste of resources).
+- Record only store  one or two attribute.
+- records use for time series data(update from time to time)
