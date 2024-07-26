@@ -25,3 +25,5 @@ We should care about read and write
 
 ##### Notation when getting hashes from redis.
 - Redis always save our hashes to string. In some case, returning value for app can make a huge problems.For example, revenue is expected to be integer, but received String. As a result, we have to serialize and deserialize to returns the correct fields and correct values. Serialize is setup object ready to hash and turn them to queryable format. Deserialize is formats data from redis, parse String to plain number
+
+>  We want to get a lot of ID rather than loop to get each HGETALL, you can create pipeline run multiple command 
